@@ -8,18 +8,22 @@ func main() {
 
 /*
 i: 0
+j: 3
 left: 1
 right: 4
 res: [1 1 1 1]
 i: 1
+j: 2
 left: 2
 right: 12
 res: [1 1 4 1]
 i: 2
+j: 1
 left: 6
 right: 24
 res: [1 12 8 1]
 i: 3
+j: 0
 left: 24
 right: 24
 res: [24 12 8 6]
@@ -41,6 +45,7 @@ func productExceptSelf(nums []int) []int {
 		res[i] = res[i] * left
 		left = left * nums[i]
 		fmt.Printf("i: %d \n", i)
+		fmt.Printf("j: %d \n", j)
 		fmt.Printf("left: %d \n", left)
 		fmt.Printf("right: %d \n", right)
 		fmt.Printf("res: %d \n", res)
