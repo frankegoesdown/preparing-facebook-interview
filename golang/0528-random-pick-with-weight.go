@@ -1,25 +1,34 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
 
 func main() {
-
+	w := []int{1, 3}
+	sol := Constructor528(w)
+	fmt.Printf("1.PickIndex = %v\n", sol.PickIndex())
+	fmt.Printf("2.PickIndex = %v\n", sol.PickIndex())
+	fmt.Printf("3.PickIndex = %v\n", sol.PickIndex())
+	fmt.Printf("4.PickIndex = %v\n", sol.PickIndex())
+	fmt.Printf("5.PickIndex = %v\n", sol.PickIndex())
+	fmt.Printf("6.PickIndex = %v\n", sol.PickIndex())
 }
 
 type Solution struct {
 	sums []int
 }
 
-func Constructor(w []int) Solution {
+func Constructor528(w []int) Solution {
 	rand.Seed(time.Now().UnixNano())
 	sums := make([]int, len(w))
 	sums[0] = w[0]
 	for i := 1; i < len(w); i++ {
 		sums[i] = w[i] + sums[i-1]
 	}
+	fmt.Println(sums)
 	return Solution{sums}
 }
 

@@ -17,13 +17,18 @@ func minWindow(s string, t string) string {
 	for _, v := range t {
 		m[v]++
 	}
+	fmt.Println(m)
+	fmt.Println("ADOBECODEBANC")
 	start, end, head, counter := 0, 0, 0, 0
 	minLen := math.MaxInt32
 	for end < len(s) {
+
 		if m[s[end]] > 0 {
 			counter++
 		}
 		m[s[end]]--
+		fmt.Printf("string(s[end]) %s \n", string(s[end]))
+		fmt.Printf("m[s[end]] %d \n", m[s[end]])
 		end++
 		for counter == len(t) {
 			if end-start < minLen {
@@ -36,6 +41,12 @@ func minWindow(s string, t string) string {
 			}
 			start++
 		}
+		fmt.Printf("start %d \n", start)
+		fmt.Printf("end %d \n", end)
+		fmt.Printf("counter %d \n", counter)
+		fmt.Printf("head %d \n", head)
+		fmt.Printf("minLen %d \n", minLen)
+		fmt.Println(m)
 	}
 	if minLen == math.MaxInt32 {
 		return ""

@@ -1,7 +1,12 @@
 package main
 
-func main() {
+import (
+	"fmt"
+)
 
+func main() {
+	n := TreeNode{Val: 1, Left: &TreeNode{Val: 2, Left: nil, Right: &TreeNode{Val: 5, Left: nil, Right: nil}}, Right: &TreeNode{Val: 3, Left: nil, Right: &TreeNode{Val: 4, Left: nil, Right: nil}}}
+	fmt.Println(rightSideView(&n))
 }
 
 type TreeNode struct {
@@ -11,24 +16,19 @@ type TreeNode struct {
 }
 
 func rightSideView(root *TreeNode) []int {
-	if root == nil {
-		return nil
+	result := make([]int, 0)
+	rightView(root, &result, 0)
+	return result
+}
+
+func rightView(curr *TreeNode, result *[]int, currDepth int) {
+	if curr == nil {
+		return
+	}
+	if currDepth == len(*result) {
+		*result = append(*result, curr.Val)
 	}
 
-	if root.Left == nil && root.Right == nil {
-		return []int{root.Val}
-	}
-
-	ls := rightSideView(root.Left)
-	rs := rightSideView(root.Right)
-
-	if len(ls) > len(rs) {
-		rs = append(rs, ls[len(rs):]...)
-	}
-
-	res := make([]int, len(rs)+1)
-	res[0] = root.Val
-	copy(res[1:], rs)
-
-	return res
+	rightView(curr.Right, result, currDepth+1)
+	rightView(curr.Left, result, currDepth+1)
 }
