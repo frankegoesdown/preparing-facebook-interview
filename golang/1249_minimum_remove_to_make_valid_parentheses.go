@@ -22,13 +22,15 @@ func minRemoveToMakeValid(s string) string {
 			stack = append(stack, s[i])
 		}
 		fmt.Printf("open: %d \n", open)
-		fmt.Printf("stagck: %v \n", stack)
+		fmt.Printf("stack: %v \n", stack)
 
 	}
 	fmt.Println("================")
 
 	res := make([]byte, len(stack)-open)
 	p := len(res) - 1
+	fmt.Println(res)
+	fmt.Println(p)
 	for i := len(stack) - 1; i >= 0; i-- {
 		if stack[i] == '(' {
 			if open > 0 {
@@ -42,6 +44,7 @@ func minRemoveToMakeValid(s string) string {
 			p--
 		}
 		fmt.Printf("i: %d \n", i)
+		fmt.Printf("p: %d \n", p)
 		fmt.Printf("open: %d \n", open)
 		fmt.Printf("res: %v \n", res)
 	}
