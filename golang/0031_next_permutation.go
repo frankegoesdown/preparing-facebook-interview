@@ -68,3 +68,37 @@ func nextPermutation2(nums []int) {
 		}
 	}
 }
+
+func nextPermutation3(nums []int) {
+	n := len(nums)
+	k := -1
+	l := -1
+	for k = n - 2; k >= 0; k-- {
+		if nums[k] < nums[k+1] {
+			break
+		}
+	}
+	if k == -1 {
+		reverse(&nums, 0, n-1)
+	} else {
+		for l = n-1; l > k; l-- {
+			if nums[l] > nums[k] {
+				break
+			}
+		}
+		swap(&nums, k, l)
+		reverse(&nums, k+1, n-1)
+	}
+}
+
+func reverse(nums *[]int, i, j int) {
+	for i < j {
+		swap(nums, i, j)
+		i++
+		j--
+	}
+}
+
+func swap(nums *[]int, i, j int) {
+	(*nums)[i], (*nums)[j] = (*nums)[j], (*nums)[i]
+}
