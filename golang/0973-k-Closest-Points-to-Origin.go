@@ -42,20 +42,28 @@ func (p PQueue) Swap(i, j int) {
 func (p *PQueue) Push(x interface{}) {
 	point := x.(Point)
 	*p = append(*p, point)
+	fmt.Println(*p)
 }
 
 func (p *PQueue) Pop() interface{} {
 	old := *p
 	n := len(old)
 	point := old[n-1]
-	//old[n-1] = nil
+	old[n-1] = nil
+	fmt.Println("------------")
+	fmt.Println(old)
+	fmt.Println(*p)
+	fmt.Println(point)
 	*p = old[0 : n-1]
+	fmt.Println(*p)
+	fmt.Println("------------")
+
 	return point
 }
 
 func kClosest2(points [][]int, k int) [][]int {
 	pq := PQueue{}
-	for _, point := range points {
+		for _, point := range points {
 		p := Point{
 			distance: (point[0] * point[0]) + (point[1] * point[1]),
 			value:    point,
