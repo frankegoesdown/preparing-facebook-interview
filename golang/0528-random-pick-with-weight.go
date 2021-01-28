@@ -33,7 +33,9 @@ func Constructor528(w []int) Solution {
 }
 
 func (this *Solution) PickIndex() int {
+	//fmt.Println(this.sums[len(this.sums)-1])
 	pick := rand.Intn(this.sums[len(this.sums)-1])
+	fmt.Println(pick)
 	l, r := 0, len(this.sums)-1
 	for l <= r {
 		mid := l + (r-l)/2

@@ -53,6 +53,7 @@ func averageOfLevels(root *TreeNode) (result []float64) {
 				newQueue = append(newQueue, node.Right)
 			}
 		}
+		fmt.Printf("len: %d \n", len(newQueue))
 		fmt.Println(newQueue)
 		fmt.Println(result)
 		result[level] /= float64(len(queue))

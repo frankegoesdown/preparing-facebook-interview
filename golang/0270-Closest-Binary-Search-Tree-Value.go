@@ -38,6 +38,7 @@ func main() {
 func closestValue(root *TreeNode, target float64) int {
 	ans := root.Val
 	for root != nil {
+		fmt.Println(root.Val)
 		if math.Abs(float64(root.Val)-target) < math.Abs(float64(ans)-target) {
 			ans = root.Val
 		}
@@ -46,6 +47,7 @@ func closestValue(root *TreeNode, target float64) int {
 		} else {
 			root = root.Right
 		}
+		//fmt.Println(root.Val)
 	}
 	return ans
 }
