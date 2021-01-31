@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	merge([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
 }
 
 func merge(nums1 []int, m int, nums2 []int, n int) {
@@ -19,6 +21,8 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 		} else {
 			nums1[m+n-1] = nums2[n-1]
 			n--
+			fmt.Println(nums1)
 		}
 	}
+	fmt.Println(nums1)
 }

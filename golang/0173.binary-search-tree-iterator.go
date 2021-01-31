@@ -15,8 +15,16 @@ func main() {
 			Val:   3,
 			Left:  &TreeNode{
 				Val:   2,
-				Left:  nil,
-				Right: nil,
+				Left:  &TreeNode{
+					Val:   11,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &TreeNode{
+					Val:   13,
+					Left:  nil,
+					Right: nil,
+				},
 			},
 			Right: nil,
 		},
@@ -41,6 +49,8 @@ func main() {
 	fmt.Println(c.HasNext())
 	fmt.Printf("val: %d",c.Next())
 	fmt.Println(c.HasNext())
+	fmt.Printf("val: %d",c.Next())
+	fmt.Printf("val: %d",c.Next())
 	fmt.Printf("val: %d",c.Next())
 	fmt.Println(c.HasNext())
 	fmt.Printf("val: %d",c.Next())

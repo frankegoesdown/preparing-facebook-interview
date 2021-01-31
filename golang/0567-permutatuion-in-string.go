@@ -8,6 +8,7 @@ func main() {
 func checkInclusion(s1 string, s2 string) bool {
 	s1Arr, s2Arr := [26]int{}, [26]int{}
 	for _, v := range s1 { s1Arr[v - 'a']++ }
+	fmt.Println(s1Arr)
 	for i, v := range s2 {
 		fmt.Println(s2Arr)
 		s2Arr[v - 'a']++

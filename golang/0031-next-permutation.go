@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(nextPermutation3([]int{1, 5, 8, 4, 7, 6, 5, 3, 1}))
 }
 
 func reverseFrom(slice []int, from int) []int {
@@ -69,26 +71,37 @@ func nextPermutation2(nums []int) {
 	}
 }
 
-func nextPermutation3(nums []int) {
+func nextPermutation3(nums []int) []int {
+	fmt.Println(nums)
 	n := len(nums)
-	k := -1
-	l := -1
+	k := 0
+	l := 0
 	for k = n - 2; k >= 0; k-- {
 		if nums[k] < nums[k+1] {
+			fmt.Println(nums[k])
+			fmt.Println(nums[k+1])
+			fmt.Println("-------")
 			break
 		}
 	}
-	if k == -1 {
-		reverse(&nums, 0, n-1)
-	} else {
+	fmt.Println(k)
+	fmt.Println(n)
+	fmt.Println(l)
+	if k >= 0 {
 		for l = n-1; l > k; l-- {
 			if nums[l] > nums[k] {
 				break
 			}
 		}
 		swap(&nums, k, l)
-		reverse(&nums, k+1, n-1)
 	}
+		fmt.Println("------------")
+	fmt.Printf("k: %d\n", k)
+	fmt.Printf("l: %d\n", l)
+	fmt.Println(nums)
+	reverse(&nums, k+1, n-1)
+
+	return nums
 }
 
 func reverse(nums *[]int, i, j int) {
@@ -100,5 +113,9 @@ func reverse(nums *[]int, i, j int) {
 }
 
 func swap(nums *[]int, i, j int) {
+	fmt.Println("====")
+	fmt.Println((*nums)[i])
+	fmt.Println((*nums)[j])
+	fmt.Println("====")
 	(*nums)[i], (*nums)[j] = (*nums)[j], (*nums)[i]
 }

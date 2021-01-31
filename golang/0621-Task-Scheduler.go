@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(leastInterval([]byte{'A','A','A','A','A','A','B','C','D','E','F','G'}, 2))
+	fmt.Println(leastInterval([]byte{'A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'}, 2))
 }
 
 func leastInterval(tasks []byte, n int) int {
@@ -15,13 +15,21 @@ func leastInterval(tasks []byte, n int) int {
 		tmp[v-'A']++
 	}
 	fmt.Println(tmp)
-	sort.Slice(tmp, func(a, b int) bool { return tmp[a] > tmp[b] })
+	sort.Slice(tmp, func(a, b int) bool {
+		return tmp[a] > tmp[b]
+	})
 	fmt.Println(tmp)
 	for i := 1; i < 26; i++ {
 		if tmp[0] == tmp[i] {
 			p++
 		}
 	}
+	fmt.Println(n)
+	fmt.Println(tmp)
+	fmt.Println(p)
+	fmt.Println(tasks)
+	fmt.Println((n+1)*(tmp[0]-1)+p)
+	fmt.Println("=====================")
 	return max((n+1)*(tmp[0]-1)+p, len(tasks))
 }
 

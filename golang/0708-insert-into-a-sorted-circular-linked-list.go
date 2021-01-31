@@ -5,17 +5,28 @@ import (
 )
 
 func main() {
-	n := &Node{
-		Val: 3,
-		Next: &Node{
-			Val: 4,
-			Next: &Node{
-				Val: 1,
-				Next: nil,
-			},
-		},
+	n1 := &Node{
+		Val:  3,
+		Next: nil,
 	}
-	fmt.Println(insert(n, 2))
+	n2 := &Node{
+		Val:  4,
+		Next: nil,
+	}
+	n3 := &Node{
+		Val:  1,
+		Next: nil,
+	}
+
+	n1.Next = n2
+	n2.Next = n3
+	n3.Next = n1
+	n := insert(n1, 2)
+	fmt.Printf("%+v\n", n)
+	fmt.Printf("%+v\n", n.Next)
+	fmt.Printf("%+v\n", n.Next.Next)
+	fmt.Printf("%+v\n", n.Next.Next.Next)
+
 }
 
 type Node struct {
@@ -44,6 +55,12 @@ func insert(aNode *Node, x int) *Node {
 		if biggestNode.Val < n.Val {
 			biggestNode = n
 		}
+		fmt.Println(n.Val)
+		fmt.Println(x)
+		fmt.Println(n.Next.Val)
+		fmt.Printf("insertAfter: %+v\n", insertAfter)
+		fmt.Println(biggestNode.Val)
+		fmt.Println("----------")
 	}
 
 	if insertAfter == nil {
@@ -51,6 +68,6 @@ func insert(aNode *Node, x int) *Node {
 	} else {
 		insertAfter.Next = &Node{Val: x, Next: insertAfter.Next}
 	}
-
+	fmt.Printf("================")
 	return aNode
 }
