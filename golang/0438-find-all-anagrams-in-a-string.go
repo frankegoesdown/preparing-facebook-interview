@@ -15,11 +15,12 @@ func findAnagrams(s string, p string) []int {
 	for i := 0; i < len(p); i++ {
 		mismatchs[int(p[i]-'a')]++
 	}
+	fmt.Println(mismatchs)
 
 	for i := 0; i < len(p); i++ {
 		mismatchs[int(s[i]-'a')]--
 	}
-
+	fmt.Println(mismatchs)
 	var ans []int
 	if check(mismatchs) {
 		ans = append(ans, 0)
@@ -27,11 +28,15 @@ func findAnagrams(s string, p string) []int {
 
 	for i := 1; i+len(p) <= len(s); i++ {
 		end := i + len(p) - 1
-		mismatchs[int(s[end]-'a')]--
-		mismatchs[int(s[i-1]-'a')]++
+		mismatchs[s[end]-'a']--
+		mismatchs[s[i-1]-'a']++
+		fmt.Println(string(s[end]))
+		fmt.Println(string(s[i-1]))
 		if check(mismatchs) {
 			ans = append(ans, i)
 		}
+		fmt.Println(ans)
+		fmt.Println(mismatchs)
 	}
 
 	return ans

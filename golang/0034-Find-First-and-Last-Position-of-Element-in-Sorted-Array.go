@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(searchRange([]int{5, 7, 7, 8, 8, 10}, 8))
 }
 
 func searchRange(nums []int, target int) []int {
@@ -9,7 +11,7 @@ func searchRange(nums []int, target int) []int {
 	if l == len(nums) || nums[l] != target {
 		return []int{-1, -1}
 	}
-	r := extremeInsertionIndex(nums, target, false) -1
+	r := extremeInsertionIndex(nums, target, false) - 1
 	return []int{l, r}
 }
 
@@ -17,7 +19,7 @@ func extremeInsertionIndex(nums []int, target int, left bool) int {
 	l := 0
 	h := len(nums)
 	for l < h {
-		mid := (h-l) /2 + l
+		mid := (h-l)/2 + l
 		if nums[mid] > target || left && nums[mid] == target {
 			h = mid
 		} else {
