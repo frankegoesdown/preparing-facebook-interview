@@ -2,18 +2,32 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
 	fmt.Println(isStrobogrammatic("6889"))
 }
-
 func isStrobogrammatic(num string) bool {
-	for i, j := 0, len(num)-1; i <= j; i, j = i+1, j-1 {
-		if !strings.Contains("00 11 88 69 96", string(num[i])+string(num[j])) {
+	m := map[byte]byte{
+		'8': '8',
+		'1': '1',
+		'6': '9',
+		'9': '6',
+		'0': '0',
+	}
+
+	l, h := 0, len(num)-1
+
+	for l <= h {
+		if _, ok := m[num[l]]; !ok {
 			return false
 		}
+
+		if m[num[l]] != num[h] {
+			return false
+		}
+		l++
+		h--
 	}
 	return true
 }

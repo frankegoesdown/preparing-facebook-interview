@@ -1,7 +1,12 @@
 package main
 
-func main() {
+import (
+	"fmt"
+	"strings"
+)
 
+func main() {
+	fmt.Println(numberToWords(123))
 }
 
 var lessThan21 = []string{
@@ -58,6 +63,7 @@ func numberToWords(num int) string {
 
 	for num > 0 {
 		if num%1000 != 0 {
+			fmt.Println("mod:", num%1000)
 			res = lessK(num%1000) + thousand[i] + " " + res
 		}
 
@@ -69,6 +75,7 @@ func numberToWords(num int) string {
 }
 
 func lessK(num int) string {
+	fmt.Println(num)
 	if num == 0 {
 		return ""
 	}
@@ -80,6 +87,6 @@ func lessK(num int) string {
 	if num < 100 {
 		return ten[num/10] + " " + lessK(num%10)
 	}
-
+	fmt.Println("===")
 	return lessThan21[num/100] + " Hundred " + lessK(num%100)
 }

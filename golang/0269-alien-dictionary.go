@@ -1,20 +1,23 @@
 package main
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-
+	fmt.Println(alienOrder([]string{"wrt", "wrf", "er", "ett", "rftt"}))
 }
 
 func alienOrder(words []string) string {
-	m := map[rune][]rune{}
+	m := map[byte][]byte{}
 
 	for _, word := range words {
 		for _, r := range word {
-			m[r] = []rune{}
+			m[byte(r)] = []byte{}
 		}
 	}
-
+	fmt.Println(m)
 	for i := 0; i+1 < len(words); i++ {
 		word1, word2 := words[i], words[i+1]
 
@@ -24,40 +27,18 @@ func alienOrder(words []string) string {
 
 		for j := 0; j < min(len(word1), len(word2)); j++ {
 			if word1[j] != word2[j] {
-				m[rune(word2[j])] = append(m[rune(word2[j])], rune(word1[j]))
+				m[word2[j]] = append(m[word2[j]], word1[j])
 				break
 			}
 		}
 	}
-
-	seen := map[rune]bool{}
-
-	var dfs func(r rune) bool
+	fmt.Println(m)
+	seen := map[byte]bool{}
 
 	output := ""
 
-	dfs = func(r rune) bool {
-		if v, ok := seen[r]; ok {
-			return v
-		}
-
-		seen[r] = false
-
-		for _, sr := range m[r] {
-			result := dfs(sr)
-			if !result {
-				return false
-			}
-		}
-
-		seen[r] = true
-		output += string(r)
-
-		return true
-	}
-
 	for r, _ := range m {
-		result := dfs(r)
+		result := dfs(r, seen, m, &output)
 		if !result {
 			return ""
 		}
@@ -68,6 +49,24 @@ func alienOrder(words []string) string {
 	}
 
 	return output
+}
+
+func dfs(r byte, seen map[byte]bool, m map[byte][]byte, output *string) bool {
+	if v, ok := seen[r]; ok {
+		return v
+	}
+
+	for _, sr := range m[r] {
+		result := dfs(sr, seen, m, output)
+		if !result {
+			return false
+		}
+	}
+
+	seen[r] = true
+	*output += string(r)
+
+	return true
 }
 
 func min(a, b int) int {

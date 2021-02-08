@@ -1,22 +1,43 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
 
-func main() {
-
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
+func main() {
+	c := Constructor()
+	fmt.Println(c.serialize(&TreeNode{
+		Val: 1,
+		Left: &TreeNode{
+			Val:   2,
+			Left:  nil,
+			Right: nil,
+		},
+		Right: &TreeNode{
+			Val: 3,
+			Left: &TreeNode{
+				Val:   4,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &TreeNode{
+				Val:   5,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+	}))
+	fmt.Println(c.deserialize("1,2,NIL,NIL,3,4,NIL,NIL,5,NIL,NIL"))
+}
+
 type Codec struct {
 }
 
@@ -26,7 +47,7 @@ func Constructor() Codec {
 
 // Serializes a tree to a single string.
 func (this *Codec) serialize(root *TreeNode) string {
-	s := []string{}
+	var s []string
 	this.serializeHelper(root, &s)
 	return strings.Join(s, ",")
 }
